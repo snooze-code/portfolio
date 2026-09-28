@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sneha Patel — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F2E7; --ink:#333A2C; --sage:#8FA378; --sage-deep:#5C7A4E; --sage-pale:#DEE7CE;
+  --blue:#9FC0C8; --blue-deep:#5D8C95; --blue-pale:#DDEBED; --blush:#E7B7C1; --blush-deep:#C88E9B;
+  --lavender:#C9B8DE; --glass:rgba(255,255,255,0.34); --glass-b:rgba(255,255,255,0.55); --line:rgba(51,58,44,0.16); --muted:#5B6350;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1E2119; --ink:#EDE9DC; --glass:rgba(255,255,255,0.06); --glass-b:rgba(255,255,255,0.14);
+    --line:rgba(237,233,220,0.16); --muted:#B7BBA9; --sage-pale:#2B3325; --blue-pale:#212C2E;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1E2119; --ink:#EDE9DC; --glass:rgba(255,255,255,0.06); --glass-b:rgba(255,255,255,0.14);
+  --line:rgba(237,233,220,0.16); --muted:#B7BBA9; --sage-pale:#2B3325; --blue-pale:#212C2E;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+*{margin:0; padding:0; box-sizing:border-box;}
+body{
+  background:var(--paper);
+  color:var(--ink); font-family:'Jost',system-ui,sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.bloom-field{position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none;}
+.bloom-field svg{width:100%; height:100%;}
+.divider-lotus{display:flex; justify-content:center; padding:6px 0;}
+.divider-lotus svg{width:30px; height:30px; opacity:0.55;}
+h1,h2,h3{font-family:'Cormorant Garamond',serif; font-weight:500;}
+a{color:inherit;}
+.wrap{max-width:1000px; margin:0 auto; padding:0 26px;}
+.kicker-label{font-size:0.72rem; letter-spacing:0.14em; font-weight:500; color:var(--sage-deep); text-transform:uppercase;}
+:root[data-theme="dark"] .kicker-label{color:var(--sage);}
+
+.glass{position:relative; background:var(--glass); backdrop-filter:blur(26px) saturate(160%); -webkit-backdrop-filter:blur(26px) saturate(160%); border:1px solid var(--glass-b); box-shadow:0 14px 34px rgba(70,86,58,0.14), inset 0 1px 0 rgba(255,255,255,0.55); border-radius:18px;}
+.glass::before{content:""; position:absolute; top:-8px; left:22px; width:46px; height:16px; background:var(--blush); opacity:0.55; transform:rotate(-4deg); border-radius:2px; box-shadow:0 2px 4px rgba(0,0,0,0.08);}
+.glass.tape-blue::before{background:var(--blue); opacity:0.6;}
+.glass.tape-sage::before{background:var(--sage); opacity:0.55;}
+
+.rings{display:flex; justify-content:center; gap:26px; padding:10px 0; position:relative;}
+.rings::before{content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:var(--line);}
+.rings span{width:14px; height:14px; border-radius:50%; border:2.5px solid var(--muted); background:var(--paper); position:relative; z-index:1;}
+
+header.site{position:sticky; top:0; z-index:20; padding-top:calc(16px + env(safe-area-inset-top,0px)); padding-bottom:16px; background:color-mix(in srgb, var(--paper) 80%, transparent); backdrop-filter:blur(10px);}
+nav{display:flex; align-items:center; justify-content:space-between; gap:18px;}
+.mark{display:flex; align-items:center; gap:9px; font-family:'Cormorant Garamond'; font-style:italic; font-size:1.3rem;}
+.mark svg{width:30px; height:30px;}
+.navlinks{display:flex; gap:24px; font-size:0.82rem; letter-spacing:0.04em;}
+.navlinks a{text-decoration:none; opacity:0.75;}
+.navlinks a:hover{opacity:1; border-bottom:1px solid var(--sage-deep);}
+.theme-toggle{width:34px; height:34px; border-radius:50%; border:1px solid var(--glass-b); background:var(--glass); backdrop-filter:blur(8px); cursor:pointer; font-size:0.95rem; line-height:1; display:flex; align-items:center; justify-content:center;}
+
+.hero{padding:64px 0 40px; display:grid; grid-template-columns:1.2fr 0.9fr; gap:40px; align-items:center;}
+.hero .vertical{writing-mode:vertical-rl; font-size:0.72rem; letter-spacing:0.18em; color:var(--muted); border-left:1px solid var(--line); padding-left:10px; height:120px; margin-bottom:14px;}
+.hero h1{font-size:clamp(3rem,7vw,4.6rem); font-style:italic; line-height:1; margin-bottom:16px;}
+.hero p.lead{font-size:1.02rem; color:var(--muted); max-width:44ch; margin-bottom:26px;}
+.cta-row{display:flex; gap:12px; flex-wrap:wrap;}
+.btn{font-family:'Jost'; font-weight:500; font-size:0.86rem; padding:11px 22px; border-radius:999px; text-decoration:none;}
+.btn.fill{background:var(--sage-deep); color:#fff;}
+.btn.outline{border:1px solid var(--line); background:var(--glass); backdrop-filter:blur(8px);}
+
+.lotus-wrap{position:relative; width:100%; max-width:290px; margin:0 auto;}
+.lotus-frame{width:100%; aspect-ratio:1; border-radius:50%; overflow:hidden; border:1px solid var(--glass-b); box-shadow:0 14px 34px rgba(70,86,58,0.16);}
+.lotus-frame svg{width:100%; height:100%;}
+.seal{position:absolute; right:-10px; bottom:-10px; width:76px; height:76px; border-radius:50%; background:var(--glass); backdrop-filter:blur(10px); border:1px dashed var(--sage-deep); display:flex; align-items:center; justify-content:center; text-align:center; font-size:0.5rem; letter-spacing:0.06em; color:var(--sage-deep); line-height:1.15; padding:6px; box-shadow:0 6px 16px rgba(70,86,58,0.14);}
+
+section{padding:50px 0;}
+.section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:28px;}
+.section-head .chapter{font-family:'Cormorant Garamond'; font-style:italic; font-size:0.95rem; color:var(--blue-deep);}
+.section-head h2{font-size:1.75rem;}
+
+.about-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:30px;}
+.about-grid p{color:var(--muted); margin-bottom:14px; max-width:56ch;}
+.card{padding:20px 22px; margin-bottom:14px;}
+.card h3{font-size:1.02rem; font-style:italic;}
+.card .meta{font-size:0.8rem; color:var(--muted);}
+
+.palette-strip{display:flex; flex-direction:column; gap:10px; margin-top:16px; padding:16px 18px; max-width:220px;}
+.palette-strip .swatch{flex-direction:row; align-items:center; gap:10px; text-transform:none; letter-spacing:0.02em; font-size:0.82rem; color:var(--ink);}
+.swatch{display:flex; flex-direction:column; align-items:center; gap:6px; font-size:0.68rem; letter-spacing:0.06em; color:var(--muted); text-transform:uppercase;}
+.dot{width:22px; height:22px; border-radius:50%; border:1px solid var(--glass-b); flex:0 0 auto;}
+
+.skill-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px;}
+.skill-card{padding:18px 20px;}
+.skill-card h3{font-size:1rem; margin-bottom:8px; color:var(--sage-deep);}
+:root[data-theme="dark"] .skill-card h3{color:var(--sage);}
+.skill-card .items{display:flex; flex-wrap:wrap; gap:6px;}
+.skill-card .items span{font-size:0.76rem; padding:4px 10px; border-radius:999px; background:var(--glass); border:1px solid var(--glass-b);}
+
+.timeline,.journal{display:flex; flex-direction:column; gap:16px;}
+.tl-item,.j-card{padding:22px 24px;}
+.tl-item .role,.j-card h3{font-size:1.06rem; font-style:italic;}
+.tl-item .role a,.j-card h3 a{color:inherit; text-decoration:none; border-bottom:1px dashed var(--muted);}
+.tl-item .role a:hover,.j-card h3 a:hover{border-bottom-style:solid; border-bottom-color:var(--sage-deep);}
+.tl-item .org{font-size:0.82rem; color:var(--blue-deep); font-weight:500;}
+:root[data-theme="dark"] .tl-item .org{color:var(--blue);}
+.tl-item .when,.j-card .when{font-size:0.76rem; color:var(--muted); margin-bottom:6px;}
+.tl-item ul,.j-card ul{padding-left:18px; color:var(--muted); font-size:0.9rem; display:flex; flex-direction:column; gap:5px;}
+.tagrow{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+.tag{font-size:0.7rem; padding:3px 9px; border-radius:999px; background:var(--sage-pale); color:var(--sage-deep);}
+:root[data-theme="dark"] .tag{color:var(--sage);}
+
+.proj-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:18px;}
+
+.awards{padding:22px 24px; display:flex; flex-direction:column; gap:12px;}
+.awards .item{display:flex; gap:12px; align-items:flex-start; color:var(--muted); font-size:0.92rem;}
+.awards .leaf{flex:0 0 auto; font-size:1rem;}
+
+footer{padding:44px 0 calc(44px + env(safe-area-inset-bottom,0px));}
+.foot-grid{display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap; padding:24px; }
+.foot-links{display:flex; gap:16px; flex-wrap:wrap;}
+.foot-links a{text-decoration:none; font-size:0.85rem; border-bottom:1px solid var(--line); padding-bottom:2px;}
+.foot-note{font-size:0.8rem; color:var(--muted);}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;}
+  .lotus-frame{order:-1; max-width:220px;}
+  .about-grid{grid-template-columns:1fr;}
+  .navlinks{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="bloom-field">
+  <svg viewBox="0 0 400 1400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="pond" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="var(--blue-pale)"/>
+        <stop offset="50%" stop-color="var(--paper)"/>
+        <stop offset="100%" stop-color="var(--sage-pale)"/>
+      </linearGradient>
+      <filter id="bblur"><feGaussianBlur stdDeviation="4"/></filter>
+      <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.4" fill="var(--sage-deep)" opacity="0.18"/>
+      </pattern>
+      <path id="petal" d="M0,0 C-6,-18 -7,-38 -3,-56 C-1,-62 1,-62 3,-56 C7,-38 6,-18 0,0 Z"/>
+      <g id="lotusFlower">
+        <ellipse cx="0" cy="4" rx="32" ry="10" fill="var(--sage)" opacity="0.55"/>
+        <path d="M0,0 C-5,-24 5,-46 0,-68" fill="none" stroke="var(--sage-deep)" stroke-width="2.6" opacity="0.65"/>
+        <g transform="translate(0,-68)">
+          <g fill="var(--blush)" opacity="0.88">
+            <use href="#petal" transform="rotate(-72)"/>
+            <use href="#petal" transform="rotate(-48)"/>
+            <use href="#petal" transform="rotate(-24)"/>
+            <use href="#petal" transform="rotate(0)"/>
+            <use href="#petal" transform="rotate(24)"/>
+            <use href="#petal" transform="rotate(48)"/>
+            <use href="#petal" transform="rotate(72)"/>
+          </g>
+          <g fill="var(--blush-deep)" opacity="0.55">
+            <use href="#petal" transform="rotate(-38) scale(0.6)"/>
+            <use href="#petal" transform="rotate(-16) scale(0.6)"/>
+            <use href="#petal" transform="rotate(6) scale(0.6)"/>
+            <use href="#petal" transform="rotate(28) scale(0.6)"/>
+          </g>
+          <ellipse cx="0" cy="-24" rx="6" ry="8" fill="#EFC97C" opacity="0.85"/>
+        </g>
+      </g>
+      <g id="lilypad"><ellipse rx="40" ry="12" fill="var(--sage)" opacity="0.5"/></g>
+    </defs>
+    <rect width="400" height="1400" fill="url(#pond)"/>
+    <rect width="400" height="1400" fill="url(#dots)"/>
+    <g filter="url(#bblur)" opacity="0.9">
+      <use href="#lilypad" x="55" y="115"/>
+      <use href="#lilypad" x="335" y="255"/>
+      <use href="#lilypad" x="35" y="475"/>
+      <use href="#lilypad" x="305" y="615"/>
+      <use href="#lilypad" x="65" y="815"/>
+      <use href="#lilypad" x="325" y="975"/>
+      <use href="#lilypad" x="45" y="1175"/>
+      <use href="#lilypad" x="315" y="1315"/>
+    </g>
+    <g filter="url(#bblur)" opacity="0.95">
+      <use href="#lotusFlower" x="70" y="115" transform="scale(1.6)"/>
+      <use href="#lotusFlower" x="330" y="255" transform="scale(1.15)"/>
+      <use href="#lotusFlower" x="55" y="475" transform="scale(1.4)"/>
+      <use href="#lotusFlower" x="320" y="615" transform="scale(1.05)"/>
+      <use href="#lotusFlower" x="90" y="815" transform="scale(1.5)"/>
+      <use href="#lotusFlower" x="300" y="975" transform="scale(1.2)"/>
+      <use href="#lotusFlower" x="60" y="1175" transform="scale(1.3)"/>
+      <use href="#lotusFlower" x="330" y="1315" transform="scale(1.1)"/>
+    </g>
+  </svg>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <nav>
+      <div class="mark">
+        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--sage-deep)" stroke-width="1.4">
+          <path d="M20 34c0-9-3-13-8-16 5 1 8 4 8 8 0-4 3-7 8-8-5 3-8 7-8 16z"/>
+          <path d="M20 34c0-11 4-16 11-19-6 2-10 6-11 12 -1-6-5-10-11-12 7 3 11 8 11 19z" opacity="0.55"/>
+          <line x1="6" y1="34" x2="34" y2="34" stroke-linecap="round"/>
+        </svg>
+        Sneha Patel
+      </div>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle light/dark mode">🌙</button>
+    </nav>
+  </div>
+</header>
+
+<div class="rings"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+<section class="hero">
+  <div class="wrap" style="display:contents;">
+    <div style="display:flex; gap:18px;">
+      <div class="vertical">DATA · ML · PORTFOLIO ARCHIVE</div>
+      <div>
+        <div class="kicker-label">No. 01 · est. 2027</div>
+        <h1>Sneha<br>Patel</h1>
+        <p class="lead">Computer Science student who turns messy operational and ML data into decisions that hold up: automating timekeeping review for 100+ student employees down to a handful of real exceptions, building multi-agent AI systems, and leading distributed teams that shipped features to 200K+ users. Looking for a data analyst or machine learning engineering role where I can keep doing that at scale.</p>
+        <div class="cta-row">
+          <a class="btn fill" href="mailto:snehapatel27dec@gmail.com" target="_blank" rel="noopener">Email me</a>
+          <a class="btn outline" href="https://github.com/snooze-code" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn outline" href="https://linkedin.com/in/snehaptl" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="lotus-wrap">
+      <div class="lotus-frame">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="bgwater" cx="50%" cy="45%" r="70%">
+            <stop offset="0%" stop-color="var(--blue-pale)"/>
+            <stop offset="100%" stop-color="var(--sage-pale)"/>
+          </radialGradient>
+          <filter id="soft"><feGaussianBlur stdDeviation="4"/></filter>
+        <path id="petalHero" d="M0,0 C-9,-27 -10,-56 -4,-82 C-1.5,-90 1.5,-90 4,-82 C10,-56 9,-27 0,0 Z"/>
+        </defs>
+        <rect width="300" height="300" fill="url(#bgwater)"/>
+        <ellipse cx="150" cy="228" rx="100" ry="16" fill="var(--sage-deep)" opacity="0.3"/>
+        <g filter="url(#soft)">
+          <ellipse cx="150" cy="218" rx="46" ry="13" fill="var(--sage)" opacity="0.6"/>
+          <path d="M150 218c-7-34 7-64 0-98" fill="none" stroke="var(--sage-deep)" stroke-width="3.5" opacity="0.65"/>
+          <g transform="translate(150,120)">
+            <g fill="var(--blush)" opacity="0.92">
+              <use href="#petalHero" transform="rotate(-72)"/>
+              <use href="#petalHero" transform="rotate(-48)"/>
+              <use href="#petalHero" transform="rotate(-24)"/>
+              <use href="#petalHero" transform="rotate(0)"/>
+              <use href="#petalHero" transform="rotate(24)"/>
+              <use href="#petalHero" transform="rotate(48)"/>
+              <use href="#petalHero" transform="rotate(72)"/>
+            </g>
+            <g fill="var(--blush-deep)" opacity="0.6">
+              <use href="#petalHero" transform="rotate(-38) scale(0.6)"/>
+              <use href="#petalHero" transform="rotate(-16) scale(0.6)"/>
+              <use href="#petalHero" transform="rotate(6) scale(0.6)"/>
+              <use href="#petalHero" transform="rotate(28) scale(0.6)"/>
+            </g>
+            <ellipse cx="0" cy="-32" rx="8" ry="11" fill="#EFC97C" opacity="0.9"/>
+          </g>
+        </g>
+      </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-lotus"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--sage-deep)" stroke-width="1.5"><path d="M20 34c0-9-3-13-8-16 5 1 8 4 8 8 0-4 3-7 8-8-5 3-8 7-8 16z"/><path d="M20 34c0-11 4-16 11-19-6 2-10 6-11 12 -1-6-5-10-11-12 7 3 11 8 11 19z" opacity="0.5"/></svg></div>
+
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><span class="chapter">Chapter 01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>I'm a Computer Science student at UT Arlington (expected May 2027) building toward a career as an AI/ML engineer and software developer. I like working at the intersection of practical software engineering and applied machine learning, from RAG systems to multi-agent architectures.</p>
+        <p><strong>What I work with:</strong> Python, NumPy, Pandas, scikit-learn, PyTorch, and TensorFlow for the ML side; LangChain, Hugging Face, RAG pipelines, embeddings, and vector databases like Pinecone for the LLM/AI side; React, Next.js, Flask, and REST APIs for full stack work. I'm currently deepening this foundation through Udemy's Complete Machine Learning and Data Science bootcamp, applying what I learn directly to hands-on projects as I go.</p>
+        <p><strong>Beyond the code:</strong> I led a 10-developer team during a full stack internship at Alhansat, shipping features for a platform with 200K+ monthly visits. My IoT capstone project on remote health monitoring was published in IJARCCE, and I received the Best Presenter (UG) award at an international conference with 1,500+ attendees.</p>
+        <p>I'm actively looking for Associate AI Developer and Software Engineering roles where I can keep building things that solve real problems. Always happy to connect, talk shop, or hear about interesting opportunities.</p>
+        <div class="palette-strip">
+          <div class="swatch"><span class="dot" style="background:var(--blush);"></span>Leadership</div>
+          <div class="swatch"><span class="dot" style="background:var(--sage);"></span>Delegation</div>
+          <div class="swatch"><span class="dot" style="background:var(--blue);"></span>Curiosity</div>
+          <div class="swatch"><span class="dot" style="background:var(--sage-deep);"></span>Initiative</div>
+        </div>
+      </div>
+      <div>
+        <div class="card glass tape-sage">
+          <h3>B.S. Computer Science</h3>
+          <div class="meta">University of Texas at Arlington · Expected May 2027</div>
+          <div class="meta" style="margin-top:6px;">Relevant coursework: Object Oriented Programming, Data Structures and Algorithms, Operating Systems, Artificial Intelligence, Linear Algebra</div>
+        </div>
+        <div class="card glass tape-blue">
+          <h3>Diploma in Information Technology</h3>
+          <div class="meta">K. K. Wagh Polytechnic, Nashik · Aug 2019 – Jul 2022</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-lotus"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--sage-deep)" stroke-width="1.5"><path d="M20 34c0-9-3-13-8-16 5 1 8 4 8 8 0-4 3-7 8-8-5 3-8 7-8 16z"/><path d="M20 34c0-11 4-16 11-19-6 2-10 6-11 12 -1-6-5-10-11-12 7 3 11 8 11 19z" opacity="0.5"/></svg></div>
+
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="chapter">Chapter 02</span><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill-card glass tape-blue"><h3>Languages</h3><div class="items"><span>Python</span><span>Java</span><span>JavaScript</span><span>TypeScript</span><span>SQL</span></div></div>
+      <div class="skill-card glass tape-sage"><h3>ML &amp; Data</h3><div class="items"><span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>NumPy</span><span>Pandas</span><span>Seaborn</span></div></div>
+      <div class="skill-card glass"><h3>AI &amp; LLMs</h3><div class="items"><span>LangChain</span><span>Hugging Face</span><span>Whisper</span><span>Gemini API</span><span>RAG</span><span>Embeddings</span></div></div>
+      <div class="skill-card glass tape-blue"><h3>Frameworks &amp; Tools</h3><div class="items"><span>React</span><span>Next.js</span><span>SvelteJS</span><span>Flask</span><span>Pinecone</span><span>Sanity</span><span>Firebase</span><span>Git</span><span>REST APIs</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-lotus"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--sage-deep)" stroke-width="1.5"><path d="M20 34c0-9-3-13-8-16 5 1 8 4 8 8 0-4 3-7 8-8-5 3-8 7-8 16z"/><path d="M20 34c0-11 4-16 11-19-6 2-10 6-11 12 -1-6-5-10-11-12 7 3 11 8 11 19z" opacity="0.5"/></svg></div>
+
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><span class="chapter">Chapter 03</span><h2>Experience</h2></div>
+    <div class="timeline">
+      <div class="tl-item glass tape-sage">
+        <div class="role">University Operations Student Assistant</div>
+        <div class="org">University of Texas at Arlington</div>
+        <div class="when">August 2026 – Present</div>
+        <ul>
+          <li>Analyzed timekeeping and missed-punch data for 100+ student employees to identify recurring workflow issues and translate findings into scheduling and clock-in/out validation requirements with management.</li>
+          <li>Built and deployed an automated review workflow using Power Automate, SharePoint, Excel, Office Scripts, and TypeScript, consolidating employee timekeeping data into a standardized view for managers and timekeepers.</li>
+          <li>Reduced records requiring manual review by approximately 95%, from 100+ records to 5–6 exceptions.</li>
+          <li>Presented workflow findings and validation recommendations to management, incorporating stakeholder feedback into the automation rules and final review process.</li>
+        </ul>
+      </div>
+      <div class="tl-item glass tape-blue">
+        <div class="role">Full Stack Development Intern</div>
+        <div class="org">Alhansat — Mumbai, India · Project: DeveloperStar</div>
+        <div class="when">December 2022 – February 2023</div>
+        <ul>
+          <li>Led a remote 10-developer team distributed across India by assigning feature ownership, establishing shared design standards, and reviewing work to maintain a consistent user experience.</li>
+          <li>Used 1:1 check-ins to understand individual blockers and introduced recurring standups to rebuild engagement, helping the team deliver features to a platform serving 200K+ monthly visits despite attrition and shifting timelines.</li>
+        </ul>
+        <div class="tagrow"><span class="tag">SvelteJS</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
+      </div>
+      <div class="tl-item glass">
+        <div class="role">Capstone Project</div>
+        <div class="org">K. K. Wagh Polytechnic — Nashik, India · Project: Embedded System for Wheelchair using IoT</div>
+        <div class="when">September 2021 – February 2022</div>
+        <ul>
+          <li>Developed an IoT-based health monitoring system for wheelchair users with over 90% accurate SpO₂ tracking via NodeMCU and sensors, integrated with a mobile app and Firebase real-time database.</li>
+          <li>Reduced healthcare accessibility costs by 80% by designing a low-cost solution (₹2,500 vs ₹12,000+ smart devices), enabling thousands in rural India to receive real-time health alerts and emergency notifications.</li>
+        </ul>
+        <div class="tagrow"><span class="tag">Java</span><span class="tag">NodeMCU</span><span class="tag">C++</span><span class="tag">Firebase</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-lotus"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--sage-deep)" stroke-width="1.5"><path d="M20 34c0-9-3-13-8-16 5 1 8 4 8 8 0-4 3-7 8-8-5 3-8 7-8 16z"/><path d="M20 34c0-11 4-16 11-19-6 2-10 6-11 12 -1-6-5-10-11-12 7 3 11 8 11 19z" opacity="0.5"/></svg></div>
+
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head"><span class="chapter">Chapter 04</span><h2>Projects</h2></div>
+    <div class="proj-grid">
+      <div class="j-card glass tape-blue">
+        <div class="when">Dec 2025 – Jan 2026</div>
+        <h3><a href="https://github.com/snooze-code/rag-lecture-search" target="_blank" rel="noopener">RAG-Based Lecture Search Engine</a></h3>
+        <ul>
+          <li>Developed a Retrieval-Augmented Generation (RAG) pipeline to enable semantic search across long-form lecture recordings.</li>
+          <li>Implemented hybrid retrieval (BM25 + dense embeddings) with Reciprocal Rank Fusion and cross-encoder re-ranking to improve answer relevance.</li>
+          <li>Enabled timestamp-level retrieval to locate precise segments within lecture videos, reducing unnecessary context usage.</li>
+          <li>Integrated vector search and embedding-based retrieval using LangChain and Pinecone for efficient query processing.</li>
+        </ul>
+        <div class="tagrow"><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Pinecone</span><span class="tag">Hugging Face</span><span class="tag">Whisper</span></div>
+      </div>
+      <div class="j-card glass tape-sage">
+        <div class="when">Jan – Feb 2026</div>
+        <h3>Heart Disease Classification</h3>
+        <ul>
+          <li>Analyzed 303 records across 13 features to examine class balance, missing values, and key relationships.</li>
+          <li>Compared Logistic Regression, KNN, and Random Forest with 5-fold cross-validation, reaching 88.5% test accuracy.</li>
+          <li>Evaluated with precision, recall, F1, and ROC curves, with documented, reproducible setup.</li>
+        </ul>
+        <div class="tagrow"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">Seaborn</span></div>
+      </div>
+      <div class="j-card glass">
+        <div class="when">Nov – Dec 2025</div>
+        <h3><a href="https://github.com/snooze-code/ashasetu-ai" target="_blank" rel="noopener">AshaSetu AI — Multi-Agent EMS Assistant</a></h3>
+        <div class="meta">Google X Kaggle: 5-Day Intensive AI Agents Course</div>
+        <ul>
+          <li>Built a multi-agent AI system that analyzes patient vitals and predicts emergency scenarios with 73% accuracy.</li>
+          <li>Designed an agent-based pipeline integrating retrieval and automated record lookup, cutting response time to under 8 seconds.</li>
+          <li>Orchestrated multiple LLM agents to support real-time decision-making workflows.</li>
+        </ul>
+        <div class="tagrow"><span class="tag">Python</span><span class="tag">Google ADK</span><span class="tag">Gemini 1.5 Pro</span></div>
+      </div>
+      <div class="j-card glass tape-blue">
+        <div class="when">Jan – Feb 2026</div>
+        <h3><a href="https://github.com/NeuronBookAI/Neuron-Book" target="_blank" rel="noopener">NeuronBook — Interactive AI Reading System</a></h3>
+        <div class="meta">Hackathon project: DeveloperWeek 2026</div>
+        <ul>
+          <li>Developed an LLM-powered pipeline generating Socratic-style questions from textbook content.</li>
+          <li>Applied embedding-based semantic understanding to track concepts and user responses dynamically.</li>
+          <li>Implemented adaptive knowledge tracking using user answers and confidence levels.</li>
+        </ul>
+        <div class="tagrow"><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">LLM</span><span class="tag">APIs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-lotus"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--sage-deep)" stroke-width="1.5"><path d="M20 34c0-9-3-13-8-16 5 1 8 4 8 8 0-4 3-7 8-8-5 3-8 7-8 16z"/><path d="M20 34c0-11 4-16 11-19-6 2-10 6-11 12 -1-6-5-10-11-12 7 3 11 8 11 19z" opacity="0.5"/></svg></div>
+
+
+<section id="research">
+  <div class="wrap">
+    <div class="section-head"><span class="chapter">Chapter 05</span><h2>Research &amp; Awards</h2></div>
+    <div class="awards glass tape-sage">
+      <div class="item"><span class="leaf">🪷</span>Published and presented research on an IoT-based assistive wheelchair system in IJARCCE.</div>
+      <div class="item"><span class="leaf">🪷</span>Received the Best Presenter (UG) award at an international online conference with 1,500+ attendees.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-lotus"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--sage-deep)" stroke-width="1.5"><path d="M20 34c0-9-3-13-8-16 5 1 8 4 8 8 0-4 3-7 8-8-5 3-8 7-8 16z"/><path d="M20 34c0-11 4-16 11-19-6 2-10 6-11 12 -1-6-5-10-11-12 7 3 11 8 11 19z" opacity="0.5"/></svg></div>
+
+<section id="leadership">
+  <div class="wrap">
+    <div class="section-head"><span class="chapter">Chapter 06</span><h2>Leadership</h2></div>
+    <div class="awards glass tape-blue">
+      <div class="item"><span class="leaf">🪷</span>UT Arlington Ambassador — 1 year</div>
+      <div class="item"><span class="leaf">🪷</span>Technical Officer, Students in Computing and Artificial Intelligence (SCAI) — 6 months</div>
+      <div class="item"><span class="leaf">🪷</span>Mentor, Society of Asian Scientists and Engineers (SASE) — 6 months</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:14px;"><span class="chapter">Chapter 07</span><h2>Contact</h2></div>
+    <div class="foot-grid glass tape-blue">
+      <div class="foot-note">Arlington, TX · (682) 416-7390 · snehapatel27dec@gmail.com</div>
+      <div class="foot-links">
+        <a href="mailto:snehapatel27dec@gmail.com" target="_blank" rel="noopener">Email</a>
+        <a href="https://github.com/snooze-code" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/snehaptl" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var saved = null;
+  try { saved = localStorage.getItem('sp-theme'); } catch(e){}
+  if(saved === 'light' || saved === 'dark'){ root.setAttribute('data-theme', saved); btn.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  btn.addEventListener('click', function(){
+    var current = root.getAttribute('data-theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var isDark = current === 'dark' || (!current && prefersDark);
+    var next = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '☀️' : '🌙';
+    try { localStorage.setItem('sp-theme', next); } catch(e){}
+  });
+})();
+</script>
+
+</body>
+</html>
